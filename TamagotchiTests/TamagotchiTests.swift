@@ -6,7 +6,6 @@
 //
 
 import XCTest
-@testable import Tamagotchi
 
 class TamagotchiTests: XCTestCase {
 
