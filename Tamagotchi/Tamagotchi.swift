@@ -8,97 +8,97 @@
 import Foundation
 import SwiftUI
 
-class Tamagotchi {
+class Tamagotchi: ObservableObject {
     
-    var age: Int
-    var weight: Double
-    var name: String
+    @Published var age: Int
+    @Published var weight: Int
     
-    var health: Int {
-        didSet{
-            if health >= 5 {
-                print("max health reached")
+    @Published var health: Int {
+        didSet {
+            if health > 5 {
+                health = 5
+            }
+            else if health < 0 {
+                health = 0
             }
         }
     }
-    var hunger: Double
-    var happy: Int
-    
-    var isDead: Bool
-    var isIll: Bool
-    
-    var isAsleep: Bool
-    var lightLevel: Bool
-    
-    init(age: Int, weight: Double, name: String, health: Int, hunger: Double, happy: Int, isDeadL: Bool, isIll: Bool, isAsleep: Bool, lightLevel: Bool) {
-        
-        self.age = 0
-        self.weight = 0.5
-        self.name = name
-        
-        self.health = 5
-        self.hunger = 5
-        self.happy = 5
-        
-        self.isDead = false
-        self.isIll = false
-        
-        self.isAsleep = false
-        self.lightLevel = true
-        
-    }
-    
-    private func eatMeal(hunger: Int){
-        
-        self.hunger += 1
-        
-    }
-    
-    private func eatSnack(hunger: Int){
-        
-        self.hunger += 0.5
-    }
-    
-    private func playGame(happy: Int, discipline: Int){
-        
-        self.happy += 1
-        self.hunger -= 1
-        
-    }
-    
-    private func sleep(lightLevel: Bool, isAsleep: Bool){
-        
-        if lightLevel == false{
-            self.isAsleep = true
+    @Published var hunger: Double {
+        didSet {
+            if hunger > 5 {
+                hunger = 5
+            }
+            else if hunger < 0 {
+                hunger = 0
+            }
         }
-        else{
-            print("The lights are still on!")
+    }
+    @Published var happy: Int {
+        didSet {
+            if happy > 5 {
+                happy = 5
+            }
+            else if  happy < 0 {
+                happy = 0
+            }
         }
-        
     }
     
-    private func giveMedicine(health: Int, isIll: Bool){
-        
-        self.health += 1
-        self.isIll = false
-        
+    @Published var isIll: Bool
+    @Published var droppings: Int
+    
+    init(){
+        age = 0
+        weight = 5
+        health = 5
+        hunger = 3
+        happy = 5
+        isIll = false
+        droppings = 0
     }
     
-    private func cleanDroppings(happy: Int){
-        
-        self.happy += 1
-        
+    func eatSnack(){
+        hunger += 1
     }
     
-    func displayStats(age: Int, weight: Double, name: String, health: Int, hunger: Double, happy: Int){
-        print("""
-            Age: \(age)
-            Weight: \(weight)kg
-            Name: \(name)
-            
-            Health: \(health)
-            Hunger: \(hunger)
-            Happy: \(happy)
+    func eatMeal(){
+        hunger += 2
+    }
+    
+    func playGame(){
+        happy += 1
+        hunger -= 1
+        
+        let randomInt = Int.random(in: 0..<5)
+        
+        if randomInt == 4{
+            health -= 1
+        }
+    }
+    
+    func takeMedicine(){
+        health += 1
+    }
+    
+    func goToToilet(){
+        happy += 1
+    }
+    
+    func beCleanedUp(){
+        happy += 1
+    }
+    
+    func grow(){
+        age += 1
+    }
+    
+    func displayStats() -> String {
+        return("""
+            Age: \(age) mins
+            Weight: \(weight) kg
+            Health: \(health)/5
+            Hunger: \(hunger)/5
+            Happy: \(happy)/5
             """)
     }
     
