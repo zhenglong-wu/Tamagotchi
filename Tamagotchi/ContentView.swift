@@ -45,6 +45,17 @@ struct ContentView: View {
         }
     }
     
+    var isIll: Bool {
+        if tamagotchi.health <= 0  || tamagotchi.droppings >= 5{
+            tamagotchi.beIll()
+            status = "Tamagotchi is ill!"
+            return true
+        }
+        else{
+            return false
+        }
+    }
+    
     
     
     let ageTimer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
@@ -68,22 +79,29 @@ struct ContentView: View {
                             }
                             .onReceive(droppingsTimer) { _ in
                                 if tamagotchi.droppings >= 0 {
-                                    tamagotchi.droppings += 1
+                                    tamagotchi.drop()
                                     status = "Tamagotchi needs to be cleaned!"
+                                    if tamagotchi.droppings >= 5{
+                                        tamagotchi.getHurt()
+                                        status = "Tamagotchi needs to be cleaned, and Tamagotch is hurting!"
+                                    }
                                 }
                             }
                             
-                        Spacer()
+                        
                     }
-                    .padding(.top, 5)
+                    .padding(.top, 10)
+                    .padding(.bottom, 10)
                     VStack{
+                        
                         Text(status)
                             .bold()
                             .font(.system(.title))
+                        
                     }
                     .padding()
 
-                    Section{
+                    Section(){
                         Button("Give snack", action: {
                             tamagotchi.eatSnack()
                             status = "Ate snack!"

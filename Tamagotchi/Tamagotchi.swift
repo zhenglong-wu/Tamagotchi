@@ -72,7 +72,7 @@ class Tamagotchi: ObservableObject {
         let randomInt = Int.random(in: 0..<5)
         
         if randomInt == 4{
-            health -= 1
+            getHurt()
         }
     }
     
@@ -85,12 +85,25 @@ class Tamagotchi: ObservableObject {
     }
     
     func beCleanedUp(){
-        happy += 1
+        droppings -= 1 
     }
     
     func grow(){
         age += 1
     }
+    
+    func drop(){
+        droppings += 1
+    }
+    
+    func beIll(){
+        isIll = true
+    }
+    
+    func getHurt(){
+        health -= 1
+    }
+    
     
     func displayStats() -> String {
         return("""
@@ -99,6 +112,7 @@ class Tamagotchi: ObservableObject {
             Health: \(health)/5
             Hunger: \(hunger)/5
             Happy: \(happy)/5
+            Droppings: \(droppings)
             """)
     }
     
