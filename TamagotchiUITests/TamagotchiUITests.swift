@@ -9,34 +9,119 @@ import XCTest
 
 class TamagotchiUITests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // UI tests must launch the application that they test.
+    func testWhenAppLaunchesAllButtonsCleanUpAreEnabled() throws {
+        
         let app = XCUIApplication()
         app.launch()
-
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        let tablesQuery = XCUIApplication().tables
+        
+        XCTAssertEqual(tablesQuery.buttons["Give meal"].isEnabled, true)
+        
+        XCTAssertEqual(tablesQuery.buttons["Give snack"].isEnabled, true)
+        
+        XCTAssertEqual(tablesQuery.buttons["Give medicine"].isEnabled, true)
+        
+        XCTAssertEqual(tablesQuery.buttons["Clean up"].isEnabled, false)
+        
+        XCTAssertEqual(tablesQuery.buttons["Play game"].isEnabled, true)
+        
     }
-
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
+    
+    func testWhenTamagotchiDiesAllButtonsAreDisabled() throws {
+        
+        let app = XCUIApplication()
+        app.launch()
+                
+        let tablesQuery = XCUIApplication().tables
+        
+        let playGameElement = XCUIApplication().tables.cells["Play game"].otherElements.containing(.button, identifier:"Play game").element
+        playGameElement.tap()
+        playGameElement.tap()
+        playGameElement.tap()
+        playGameElement.tap()
+        playGameElement.tap()
+        playGameElement.tap()
+        playGameElement.tap()
+        playGameElement.tap()
+        playGameElement.tap()
+        playGameElement.tap()
+        playGameElement.tap()
+        playGameElement.tap()
+        playGameElement.tap()
+        playGameElement.tap()
+        playGameElement.tap()
+        playGameElement.tap()
+        playGameElement.tap()
+        playGameElement.tap()
+        playGameElement.tap()
+        playGameElement.tap()
+        playGameElement.tap()
+        playGameElement.tap()
+        playGameElement.tap()
+        playGameElement.tap()
+        playGameElement.tap()
+        playGameElement.tap()
+        playGameElement.tap()
+        playGameElement.tap()
+        playGameElement.tap()
+        
+        XCTAssertEqual(tablesQuery.buttons["Give meal"].isEnabled, false)
+        
+        XCTAssertEqual(tablesQuery.buttons["Give snack"].isEnabled, false)
+        
+        XCTAssertEqual(tablesQuery.buttons["Give medicine"].isEnabled, false)
+        
+        XCTAssertEqual(tablesQuery.buttons["Clean up"].isEnabled, false)
+        
+        XCTAssertEqual(tablesQuery.buttons["Play game"].isEnabled, false)
+        
     }
+    
+    func testWhenTamagotchiDiesGameEndButtonIsEnabled() throws {
+        
+        let app = XCUIApplication()
+        app.launch()
+            
+        let tablesQuery = app.tables
+        tablesQuery.cells["Play game"].otherElements.containing(.button, identifier:"Play game").element.tap()
+        
+        let playGameButton = tablesQuery/*@START_MENU_TOKEN@*/.buttons["Play game"]/*[[".cells[\"Play game\"].buttons[\"Play game\"]",".buttons[\"Play game\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        playGameButton.tap()
+        playGameButton.tap()
+        playGameButton.tap()
+        playGameButton.tap()
+        playGameButton.tap()
+        playGameButton.tap()
+        playGameButton.tap()
+        playGameButton.tap()
+        playGameButton.tap()
+        playGameButton.tap()
+        playGameButton.tap()
+        playGameButton.tap()
+        playGameButton.tap()
+        playGameButton.tap()
+        playGameButton.tap()
+        playGameButton.tap()
+        playGameButton.tap()
+        playGameButton.tap()
+        playGameButton.tap()
+        playGameButton.tap()
+        playGameButton.tap()
+        playGameButton.tap()
+        playGameButton.tap()
+        playGameButton.tap()
+        playGameButton.tap()
+        playGameButton.tap()
+        playGameButton.tap()
+        playGameButton.tap()
+        playGameButton.tap()
+        playGameButton.tap()
+        playGameButton.tap()
+        playGameButton.tap()
+     
+        XCTAssertEqual(app.buttons["Continue"].isEnabled, true)
+    
+    }
+    
 }

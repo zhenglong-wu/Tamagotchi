@@ -15,6 +15,7 @@
 		66ABCDC025BAF5F900DF6941 /* TamagotchiUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ABCDBF25BAF5F900DF6941 /* TamagotchiUITests.swift */; };
 		66ABCDD125BAF77500DF6941 /* Tamagotchi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ABCDD025BAF77500DF6941 /* Tamagotchi.swift */; };
 		66ABCDD225BAF77500DF6941 /* Tamagotchi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ABCDD025BAF77500DF6941 /* Tamagotchi.swift */; };
+		66D0B6D625CAE8AB00C59D38 /* EndGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D0B6D525CAE8AB00C59D38 /* EndGameView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		66ABCDBF25BAF5F900DF6941 /* TamagotchiUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TamagotchiUITests.swift; sourceTree = "<group>"; };
 		66ABCDC125BAF5F900DF6941 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		66ABCDD025BAF77500DF6941 /* Tamagotchi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tamagotchi.swift; sourceTree = "<group>"; };
+		66D0B6D525CAE8AB00C59D38 /* EndGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGameView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				66ABCDAB25BAF5F900DF6941 /* Info.plist */,
 				66ABCDA825BAF5F900DF6941 /* Preview Content */,
 				66ABCDD025BAF77500DF6941 /* Tamagotchi.swift */,
+				66D0B6D525CAE8AB00C59D38 /* EndGameView.swift */,
 			);
 			path = Tamagotchi;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				66ABCDA525BAF5F800DF6941 /* ContentView.swift in Sources */,
+				66D0B6D625CAE8AB00C59D38 /* EndGameView.swift in Sources */,
 				66ABCDD125BAF77500DF6941 /* Tamagotchi.swift in Sources */,
 				66ABCDA325BAF5F800DF6941 /* TamagotchiApp.swift in Sources */,
 			);

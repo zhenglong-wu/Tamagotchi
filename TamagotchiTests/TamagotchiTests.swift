@@ -9,24 +9,66 @@ import XCTest
 
 class TamagotchiTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    func testTamagotchiDisplayStatsFunctionReturnsStringOfStats(){
+        
+        let tamagotchi = Tamagotchi()
+        
+        let correctStats = """
+            Age: 0 mins
+            Health: 3/5
+            Hunger: 3/5
+            Happy: 3/5
+            Droppings: 0
+            """
+        
+        XCTAssertEqual(tamagotchi.displayStats(), correctStats)
+        
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    func testTamagotchiGiveAgeFunctionReturnsDefaultAge(){
+        
+        let tamagotchi = Tamagotchi()
+        
+        let correctAge: Int = 0
+    
+        XCTAssertEqual(tamagotchi.giveAge(), correctAge)
+        
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    
+    func testGiveMedicineFunctionGivesTamagotchiOnePlusHealth(){
+        
+        let tamagotchi = Tamagotchi()
+        
+        let correctHealth = tamagotchi.health + 1
+        
+        tamagotchi.takeMedicine()
+        
+        XCTAssertEqual(tamagotchi.health, correctHealth)
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    func testGiveMealFunctionGivesTamagotchiTwoPlusHunger(){
+        
+        let tamagotchi = Tamagotchi()
+        
+        let correctHunger = tamagotchi.hunger + 2
+        
+        tamagotchi.eatMeal()
+        
+        XCTAssertEqual(tamagotchi.hunger, correctHunger)
+        
     }
-
+    
+    func testGiveSnackFunctionGivesTamagotchiOnePlusHunger(){
+        
+        let tamagotchi = Tamagotchi()
+        
+        let correctHunger = tamagotchi.hunger + 1
+        
+        tamagotchi.eatSnack()
+        
+        XCTAssertEqual(tamagotchi.hunger, correctHunger)
+        
+    }
+    
+    
 }

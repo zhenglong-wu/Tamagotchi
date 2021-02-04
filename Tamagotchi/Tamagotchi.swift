@@ -6,12 +6,12 @@
 //
 
 import Foundation
+
 import SwiftUI
 
 class Tamagotchi: ObservableObject {
     
-    @Published var age: Int
-    @Published var weight: Int
+    @Published var age: Int   
     
     @Published var health: Int {
         didSet {
@@ -23,7 +23,7 @@ class Tamagotchi: ObservableObject {
             }
         }
     }
-    @Published var hunger: Double {
+    @Published var hunger: Int {
         didSet {
             if hunger > 5 {
                 hunger = 5
@@ -38,21 +38,26 @@ class Tamagotchi: ObservableObject {
             if happy > 5 {
                 happy = 5
             }
-            else if  happy < 0 {
+            else if happy < 0 {
                 happy = 0
             }
         }
     }
     
     @Published var isIll: Bool
-    @Published var droppings: Int
-    
+    @Published var droppings: Int {
+        didSet {
+            if droppings < 0 {
+                droppings = 0
+            }
+        }
+    }
+        
     init(){
         age = 0
-        weight = 5
-        health = 5
+        health = 3
         hunger = 3
-        happy = 5
+        happy = 3
         isIll = false
         droppings = 0
     }
@@ -71,17 +76,13 @@ class Tamagotchi: ObservableObject {
         
         let randomInt = Int.random(in: 0..<5)
         
-        if randomInt == 4{
+        if randomInt == 1{
             getHurt()
         }
     }
     
     func takeMedicine(){
         health += 1
-    }
-    
-    func goToToilet(){
-        happy += 1
     }
     
     func beCleanedUp(){
@@ -104,11 +105,21 @@ class Tamagotchi: ObservableObject {
         health -= 1
     }
     
+    func getUnHappy(){
+        happy -= 1
+    }
+    
+    func getHungry(){
+        hunger -= 1
+    }
+    
+    func giveAge() -> Int {
+        return age
+    }
     
     func displayStats() -> String {
         return("""
             Age: \(age) mins
-            Weight: \(weight) kg
             Health: \(health)/5
             Hunger: \(hunger)/5
             Happy: \(happy)/5
